@@ -79,7 +79,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full bg-black text-white flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-28 md:pt-32"
+      className="relative min-h-screen w-full bg-background text-foreground flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-28 md:pt-32 transition-colors duration-300"
     >
       {/* Grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_60%,transparent_100%)] pointer-events-none" />
@@ -114,9 +114,9 @@ export default function Hero() {
             {/* Main Heading */}
             <motion.h1
               variants={fadeUpVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-white"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-zinc-900 dark:text-white"
             >
-              Hi, I'm <span className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">{personal.firstName}</span>
+              Hi, I'm <span className="bg-gradient-to-r from-zinc-800 dark:from-zinc-100 to-zinc-500 dark:to-zinc-400 bg-clip-text text-transparent">{personal.firstName}</span>
             </motion.h1>
 
             {/* Highlight */}
@@ -130,7 +130,7 @@ export default function Hero() {
             {/* Short Description */}
             <motion.p
               variants={fadeUpVariants}
-              className="mt-6 text-base sm:text-lg md:text-xl text-zinc-400 max-w-xl font-light leading-relaxed"
+              className="mt-6 text-base sm:text-lg md:text-xl text-zinc-650 dark:text-zinc-400 max-w-xl font-light leading-relaxed"
             >
               {personal.tagline} using Next.js, React, TypeScript, Node.js, and modern web technologies.
             </motion.p>
@@ -147,7 +147,7 @@ export default function Hero() {
               >
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-white text-black hover:bg-zinc-200 transition-all duration-300 font-semibold rounded-full px-8 py-5 text-base shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                  className="w-full sm:w-auto bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all duration-300 font-semibold rounded-full px-8 py-5 text-base shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                   asChild
                 >
                   <a
@@ -167,7 +167,7 @@ export default function Hero() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto border-zinc-800 bg-zinc-950/50 hover:bg-zinc-900 text-zinc-300 hover:text-white rounded-full px-8 py-5 text-base hover:border-zinc-700 transition-all duration-300"
+                  className="w-full sm:w-auto border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-950/50 hover:bg-zinc-200 dark:hover:bg-zinc-900 text-zinc-650 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white rounded-full px-8 py-5 text-base hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300"
                   asChild
                 >
                   <a
@@ -195,7 +195,7 @@ export default function Hero() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center justify-center size-11 rounded-full border border-zinc-800/80 bg-zinc-950/40 text-zinc-400 hover:text-zinc-100 hover:border-zinc-700 backdrop-blur-xs transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary shadow-xs hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+                    className="flex items-center justify-center size-11 rounded-full border border-zinc-200 dark:border-zinc-800/80 bg-zinc-100/40 dark:bg-zinc-950/40 text-zinc-550 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-700 backdrop-blur-xs transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary shadow-xs hover:shadow-[0_0_15px_rgba(0,0,0,0.02)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
                     aria-label={social.label}
                   >
                     <Icon className="size-5" />
@@ -232,7 +232,7 @@ export default function Hero() {
                 className="relative flex justify-center items-center"
               >
                 {/* Outer decorative ring */}
-                <div className="absolute w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] rounded-full border border-zinc-800/60 bg-zinc-950/20 backdrop-blur-xs pointer-events-none" />
+                <div className="absolute w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] rounded-full border border-zinc-200 dark:border-zinc-800/60 bg-zinc-100/20 dark:bg-zinc-950/20 backdrop-blur-xs pointer-events-none" />
 
                 {/* Main Profile Image Ring Wrapper */}
                 <div className="relative p-1.5 rounded-full bg-gradient-to-tr from-violet-500/25 via-indigo-500/15 to-cyan-500/25 border border-white/10 shadow-[0_0_50px_rgba(139,92,246,0.1)]">

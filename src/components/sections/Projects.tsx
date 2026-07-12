@@ -49,7 +49,7 @@ interface ProjectCardProps {
 function MockupRenderer({ type, accentGradient }: { type: string; accentGradient: string }) {
   if (type === "delivery") {
     return (
-      <div className="relative w-full h-44 rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900 flex flex-col p-4 select-none">
+      <div className="relative w-full h-44 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 flex flex-col p-4 select-none">
         {/* Browser dot actions */}
         <div className="flex gap-1.5 mb-3" aria-hidden="true">
           <div className="size-2 rounded-full bg-red-500/50" />
@@ -60,9 +60,9 @@ function MockupRenderer({ type, accentGradient }: { type: string; accentGradient
         {/* Mockup interface elements */}
         <div className="flex flex-col gap-2.5 flex-grow">
           {/* Header area */}
-          <div className="flex justify-between items-center border-b border-zinc-900 pb-2">
-            <div className="h-3 w-20 rounded bg-zinc-900" />
-            <div className="size-6 rounded-full bg-zinc-900 flex items-center justify-center">
+          <div className="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-900 pb-2">
+            <div className="h-3 w-20 rounded bg-zinc-200 dark:bg-zinc-900" />
+            <div className="size-6 rounded-full bg-zinc-250 dark:bg-zinc-900 flex items-center justify-center">
               <Pizza className="size-3 text-amber-500" />
             </div>
           </div>
@@ -71,15 +71,15 @@ function MockupRenderer({ type, accentGradient }: { type: string; accentGradient
           <div className="grid grid-cols-3 gap-2 flex-grow">
             <div className="col-span-2 flex flex-col gap-2">
               <div className={`h-1.5 w-full rounded bg-gradient-to-r ${accentGradient}`} />
-              <div className="h-1.5 w-4/5 rounded bg-zinc-900" />
-              <div className="h-8 w-full rounded-md bg-zinc-900/60 border border-zinc-800/40 p-1 flex items-center gap-1.5 mt-auto">
-                <div className="size-6 rounded bg-zinc-800 flex items-center justify-center text-[8px] font-bold text-zinc-400">Qty</div>
-                <div className="h-1 w-8 rounded bg-zinc-700" />
+              <div className="h-1.5 w-4/5 rounded bg-zinc-250 dark:bg-zinc-900" />
+              <div className="h-8 w-full rounded-md bg-zinc-250/60 dark:bg-zinc-900/60 border border-zinc-300/40 dark:border-zinc-800/40 p-1 flex items-center gap-1.5 mt-auto">
+                <div className="size-6 rounded bg-zinc-350 dark:bg-zinc-800 flex items-center justify-center text-[8px] font-bold text-zinc-550 dark:text-zinc-400">Qty</div>
+                <div className="h-1 w-8 rounded bg-zinc-350 dark:bg-zinc-700" />
               </div>
             </div>
             {/* Dynamic absolute cart panel */}
-            <div className="col-span-1 border border-zinc-800/80 bg-zinc-900/40 rounded-lg p-2 flex flex-col justify-between items-center shadow-md">
-              <div className="h-1.5 w-8 rounded bg-zinc-800" />
+            <div className="col-span-1 border border-zinc-200 dark:border-zinc-800/80 bg-zinc-150/40 dark:bg-zinc-900/40 rounded-lg p-2 flex flex-col justify-between items-center shadow-md">
+              <div className="h-1.5 w-8 rounded bg-zinc-300 dark:bg-zinc-800" />
               <div className="size-7 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
                 <span className="text-[10px] font-bold text-amber-400">$32</span>
               </div>
@@ -93,7 +93,7 @@ function MockupRenderer({ type, accentGradient }: { type: string; accentGradient
 
   if (type === "ecommerce") {
     return (
-      <div className="relative w-full h-44 rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900 flex flex-col p-4 select-none">
+      <div className="relative w-full h-44 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 flex flex-col p-4 select-none">
         {/* Browser dot actions */}
         <div className="flex gap-1.5 mb-3" aria-hidden="true">
           <div className="size-2 rounded-full bg-red-500/50" />
@@ -105,26 +105,26 @@ function MockupRenderer({ type, accentGradient }: { type: string; accentGradient
         <div className="flex flex-col gap-3 flex-grow">
           {/* Mockup filter bar */}
           <div className="flex justify-between items-center gap-2">
-            <div className="h-5 w-24 rounded bg-zinc-900" />
+            <div className="h-5 w-24 rounded bg-zinc-250 dark:bg-zinc-900" />
             <div className="flex gap-1">
-              <div className="h-4 w-8 rounded bg-zinc-900" />
-              <div className="h-4 w-8 rounded bg-zinc-900" />
+              <div className="h-4 w-8 rounded bg-zinc-250 dark:bg-zinc-900" />
+              <div className="h-4 w-8 rounded bg-zinc-250 dark:bg-zinc-900" />
             </div>
           </div>
           
           {/* Interactive product mockup cards */}
           <div className="grid grid-cols-2 gap-3 flex-grow">
-            <div className="border border-zinc-900 bg-zinc-900/20 rounded-lg p-2 flex flex-col gap-2">
+            <div className="border border-zinc-200 dark:border-zinc-900 bg-zinc-200/20 dark:bg-zinc-900/20 rounded-lg p-2 flex flex-col gap-2">
               <div className={`h-12 w-full rounded-md bg-gradient-to-tr ${accentGradient} opacity-20`} />
               <div className="flex justify-between items-center">
-                <div className="h-1.5 w-10 rounded bg-zinc-800" />
+                <div className="h-1.5 w-10 rounded bg-zinc-300 dark:bg-zinc-800" />
                 <ShoppingBag className="size-3.5 text-zinc-500" />
               </div>
             </div>
-            <div className="border border-zinc-900 bg-zinc-900/20 rounded-lg p-2 flex flex-col gap-2">
+            <div className="border border-zinc-200 dark:border-zinc-900 bg-zinc-200/20 dark:bg-zinc-900/20 rounded-lg p-2 flex flex-col gap-2">
               <div className={`h-12 w-full rounded-md bg-gradient-to-tr ${accentGradient} opacity-20`} />
               <div className="flex justify-between items-center">
-                <div className="h-1.5 w-10 rounded bg-zinc-800" />
+                <div className="h-1.5 w-10 rounded bg-zinc-300 dark:bg-zinc-800" />
                 <ShoppingBag className="size-3.5 text-zinc-500" />
               </div>
             </div>
@@ -136,7 +136,7 @@ function MockupRenderer({ type, accentGradient }: { type: string; accentGradient
 
   // Design System (Aether UI) mockup
   return (
-    <div className="relative w-full h-44 rounded-xl overflow-hidden bg-zinc-950 border border-zinc-900 flex flex-col p-4 select-none">
+    <div className="relative w-full h-44 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 flex flex-col p-4 select-none">
       {/* Browser dot actions */}
       <div className="flex gap-1.5 mb-3" aria-hidden="true">
         <div className="size-2 rounded-full bg-red-500/50" />
@@ -147,10 +147,10 @@ function MockupRenderer({ type, accentGradient }: { type: string; accentGradient
       {/* Design System UI Layout */}
       <div className="flex flex-col gap-2.5 flex-grow justify-center">
         {/* Toggle widget */}
-        <div className="flex justify-between items-center border border-zinc-900 p-2.5 rounded-lg bg-zinc-900/20">
+        <div className="flex justify-between items-center border border-zinc-200 dark:border-zinc-900 p-2.5 rounded-lg bg-zinc-200/20 dark:bg-zinc-900/20">
           <div className="flex flex-col gap-1">
-            <div className="h-1.5 w-16 rounded bg-zinc-800" />
-            <div className="h-1 w-10 rounded bg-zinc-900" />
+            <div className="h-1.5 w-16 rounded bg-zinc-300 dark:bg-zinc-800" />
+            <div className="h-1 w-10 rounded bg-zinc-250 dark:bg-zinc-900" />
           </div>
           <div className={`w-8 h-4.5 rounded-full bg-gradient-to-r ${accentGradient} p-0.5 flex justify-end items-center`}>
             <div className="size-3.5 rounded-full bg-white shadow-xs" />
@@ -158,12 +158,12 @@ function MockupRenderer({ type, accentGradient }: { type: string; accentGradient
         </div>
 
         {/* Input widget */}
-        <div className="flex items-center justify-between border border-zinc-900 p-2.5 rounded-lg bg-zinc-900/20">
+        <div className="flex items-center justify-between border border-zinc-200 dark:border-zinc-900 p-2.5 rounded-lg bg-zinc-200/20 dark:bg-zinc-900/20">
           <div className="flex items-center gap-2">
-            <div className="size-2 rounded-full bg-zinc-800" />
-            <div className="h-1.5 w-24 rounded bg-zinc-800" />
+            <div className="size-2 rounded-full bg-zinc-300 dark:bg-zinc-800" />
+            <div className="h-1.5 w-24 rounded bg-zinc-300 dark:bg-zinc-800" />
           </div>
-          <div className="h-4 w-12 rounded bg-zinc-900 border border-zinc-800" />
+          <div className="h-4 w-12 rounded bg-zinc-250 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800" />
         </div>
       </div>
     </div>
@@ -234,7 +234,7 @@ function ProjectCard({ project, shouldReduceMotion, cardVariants }: ProjectCardP
               perspective: 1000,
             }
       }
-      className={`relative group bg-zinc-950/45 backdrop-blur-md border border-zinc-900/80 hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col justify-between h-full overflow-hidden`}
+      className={`relative group bg-white/70 dark:bg-zinc-950/45 backdrop-blur-md border border-zinc-200 dark:border-zinc-900/80 hover:border-zinc-300 dark:hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col justify-between h-full overflow-hidden`}
       role="listitem"
       aria-labelledby={headerId}
     >
@@ -257,21 +257,21 @@ function ProjectCard({ project, shouldReduceMotion, cardVariants }: ProjectCardP
         {/* Header Elements */}
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <span className="px-2.5 py-0.5 rounded-full border border-zinc-800 bg-zinc-900/40 text-zinc-400 text-xs font-medium">
+            <span className="px-2.5 py-0.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-150/40 dark:bg-zinc-900/40 text-zinc-550 dark:text-zinc-400 text-xs font-medium">
               {project.category}
             </span>
             <div className="flex gap-2 items-center">
-              <span className="text-[10px] font-mono text-zinc-500">{project.year}</span>
+              <span className="text-[10px] font-mono text-zinc-550 dark:text-zinc-500">{project.year}</span>
               <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-[10px] font-semibold text-emerald-400 tracking-wide uppercase">{project.status}</span>
             </div>
           </div>
 
-          <h3 id={headerId} className="text-2xl font-bold text-white tracking-tight leading-none group-hover:text-zinc-100">
+          <h3 id={headerId} className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight leading-none group-hover:text-zinc-800 dark:group-hover:text-zinc-100">
             {project.title}
           </h3>
 
-          <p className="text-zinc-400 text-sm font-light leading-relaxed">
+          <p className="text-zinc-650 dark:text-zinc-400 text-sm font-light leading-relaxed">
             {project.description}
           </p>
         </div>
@@ -287,7 +287,7 @@ function ProjectCard({ project, shouldReduceMotion, cardVariants }: ProjectCardP
         {/* Features list */}
         <div className="space-y-3">
           <h4 className="text-xs font-semibold text-zinc-500 tracking-wider uppercase">Key Features</h4>
-          <ul className="space-y-2 text-zinc-400 text-xs font-light leading-relaxed" role="list">
+          <ul className="space-y-2 text-zinc-650 dark:text-zinc-400 text-xs font-light leading-relaxed" role="list">
             {project.features.map((feature, idx) => (
               <li key={idx} className="flex items-start gap-2.5">
                 <ShieldCheck className={`size-4 shrink-0 bg-gradient-to-br ${project.accentGradient} bg-clip-text text-transparent`} aria-hidden="true" />
@@ -304,7 +304,7 @@ function ProjectCard({ project, shouldReduceMotion, cardVariants }: ProjectCardP
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1.5 rounded-md border border-zinc-900 bg-zinc-950/60 text-zinc-500 hover:text-zinc-300 transition-colors text-[10px] font-mono select-none"
+                className="px-2.5 py-1.5 rounded-md border border-zinc-200 dark:border-zinc-900 bg-zinc-100/60 dark:bg-zinc-950/60 text-zinc-550 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-300 transition-colors text-[10px] font-mono select-none"
               >
                 {tech}
               </span>
@@ -315,13 +315,13 @@ function ProjectCard({ project, shouldReduceMotion, cardVariants }: ProjectCardP
         {/* Project Links/CTAs */}
         <div 
           style={{ transform: shouldReduceMotion ? "none" : "translateZ(10px)" }}
-          className="flex items-center gap-3.5 pt-4 border-t border-zinc-900/60 mt-auto"
+          className="flex items-center gap-3.5 pt-4 border-t border-zinc-200 dark:border-zinc-900/60 mt-auto"
         >
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 flex-grow px-4 py-2.5 rounded-xl border border-zinc-800 bg-zinc-950/60 text-zinc-300 hover:text-white hover:border-zinc-700 transition-all duration-300 text-xs font-semibold hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+            className="flex items-center justify-center gap-2 flex-grow px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100/60 dark:bg-zinc-950/60 text-zinc-650 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 text-xs font-semibold hover:shadow-[0_0_15px_rgba(0,0,0,0.02)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
             aria-label={`View ${project.title} source code on GitHub`}
           >
             <GithubIcon className="size-4" aria-hidden="true" />
@@ -331,7 +331,7 @@ function ProjectCard({ project, shouldReduceMotion, cardVariants }: ProjectCardP
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 flex-grow px-4 py-2.5 rounded-xl bg-white text-black hover:bg-zinc-200 transition-all duration-300 text-xs font-semibold shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+            className="flex items-center justify-center gap-2 flex-grow px-4 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all duration-300 text-xs font-semibold shadow-md dark:shadow-[0_0_15px_rgba(255,255,255,0.15)]"
             aria-label={`Launch ${project.title} live demo`}
           >
             <ExternalLink className="size-4" aria-hidden="true" />
@@ -463,7 +463,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative py-24 md:py-32 w-full bg-black text-white overflow-hidden"
+      className="relative py-24 md:py-32 w-full bg-background text-foreground transition-colors duration-300 overflow-hidden"
       aria-label="Portfolio Projects"
     >
       {/* Grid background overlay */}
@@ -522,7 +522,7 @@ export default function Projects() {
           {/* Heading */}
           <motion.h2
             variants={headerVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-zinc-855 dark:from-white to-zinc-650 dark:to-zinc-400 bg-clip-text text-transparent"
           >
             Featured Projects
           </motion.h2>
@@ -531,7 +531,7 @@ export default function Projects() {
           {/* Subtitle */}
           <motion.p
             variants={headerVariants}
-            className="mt-6 text-base sm:text-lg text-zinc-400 max-w-2xl font-light leading-relaxed"
+            className="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl font-light leading-relaxed"
           >
             A curated showcase of full-stack web applications and interactive design systems built using modern architectures.
           </motion.p>

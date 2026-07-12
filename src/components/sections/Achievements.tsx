@@ -137,7 +137,7 @@ export default function Achievements() {
                 key={idx}
                 glowColor={item.glowColor}
                 borderColorClass={cn(
-                  "hover:border-zinc-800",
+                  "hover:border-zinc-300 dark:hover:border-zinc-800",
                   item.badgeColor === "amber" && "hover:border-amber-500/30",
                   item.badgeColor === "rose" && "hover:border-rose-500/30",
                   item.badgeColor === "cyan" && "hover:border-cyan-500/30",
@@ -150,7 +150,7 @@ export default function Achievements() {
                   {/* Top Details */}
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <AnimatedBadge shouldScale={false} className="border-zinc-800 bg-zinc-900/40">
+                      <AnimatedBadge shouldScale={false} className="border-zinc-200 dark:border-zinc-800 bg-zinc-100/40 dark:bg-zinc-900/40 text-zinc-655 dark:text-zinc-405">
                         {item.badge}
                       </AnimatedBadge>
                       <span className="text-xs font-mono text-zinc-500">{item.year}</span>
@@ -160,23 +160,23 @@ export default function Achievements() {
                       <div className={cn("p-3 rounded-xl border bg-gradient-to-br shadow-inner shrink-0", item.colorClass)}>
                         <Icon className="size-6" aria-hidden="true" />
                       </div>
-                      <h3 id={headerId} className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-zinc-100">
+                      <h3 id={headerId} className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-zinc-800 dark:group-hover:text-zinc-100">
                         {item.title}
                       </h3>
                     </div>
 
-                    <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                    <p className="text-zinc-650 dark:text-zinc-400 text-sm font-light leading-relaxed">
                       {item.description}
                     </p>
                   </div>
 
                   {/* Decorative Border & Graphic */}
-                  <div className="pt-4 border-t border-zinc-900/60 flex items-center justify-between text-[10px] font-mono text-zinc-500 select-none">
+                  <div className="pt-4 border-t border-zinc-200 dark:border-zinc-900/60 flex items-center justify-between text-[10px] font-mono text-zinc-500 select-none">
                     <span>Verified Milestone</span>
                     <div className="flex gap-1" aria-hidden="true">
-                      <div className="size-1 rounded-full bg-zinc-800" />
-                      <div className="size-1 rounded-full bg-zinc-800" />
-                      <div className="size-1 rounded-full bg-zinc-800" />
+                      <div className="size-1 rounded-full bg-zinc-300 dark:bg-zinc-800" />
+                      <div className="size-1 rounded-full bg-zinc-300 dark:bg-zinc-800" />
+                      <div className="size-1 rounded-full bg-zinc-300 dark:bg-zinc-800" />
                     </div>
                   </div>
 

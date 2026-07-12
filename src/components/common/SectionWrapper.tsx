@@ -22,7 +22,7 @@ export default function SectionWrapper({
     <section
       id={id}
       className={cn(
-        "relative py-24 md:py-32 w-full bg-black text-white overflow-hidden",
+        "relative py-24 md:py-32 w-full bg-background text-foreground transition-colors duration-300 overflow-hidden",
         className
       )}
       aria-label={ariaLabel}

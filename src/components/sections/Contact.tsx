@@ -116,10 +116,10 @@ export default function Contact() {
           {/* Left Column: Copy & Details Card */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-8">
             <div className="space-y-6">
-              <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight leading-tight">
                 Let's collaborate on your next venture.
               </h3>
-              <p className="text-zinc-400 font-light leading-relaxed text-base">
+              <p className="text-zinc-650 dark:text-zinc-400 font-light leading-relaxed text-base">
                 Whether you have an application idea, an engineering vacancy to fill, or simply wish to say hello, I'm always open to talking tech. Fill out the form, or reach me directly through my coordinates.
               </p>
               
@@ -139,29 +139,29 @@ export default function Contact() {
               viewport={{ once: true, margin: "-100px" }}
             >
               <div className="p-6 md:p-8 space-y-6">
-                <h4 className="text-lg font-bold text-white border-b border-zinc-900 pb-3 flex items-center justify-between">
+                <h4 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-900 pb-3 flex items-center justify-between">
                   <span>Contact Information</span>
                   <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
                 </h4>
 
                 <div className="space-y-4">
                   {/* Name */}
-                  <div className="flex items-center gap-4 text-sm text-zinc-300">
-                    <div className="size-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400">
+                  <div className="flex items-center gap-4 text-sm text-zinc-750 dark:text-zinc-300">
+                    <div className="size-9 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-550 dark:text-zinc-400">
                       <span className="font-bold text-xs select-none">AY</span>
                     </div>
                     <div>
                       <span className="block text-[10px] text-zinc-500 font-mono uppercase tracking-wider">Name</span>
-                      <span className="font-semibold text-white">Ashish Yadav</span>
+                      <span className="font-semibold text-zinc-900 dark:text-white">Ashish Yadav</span>
                     </div>
                   </div>
 
                   {/* Email */}
                   <a 
                     href="mailto:ashishyadav25800@gmail.com"
-                    className="flex items-center gap-4 text-sm text-zinc-300 hover:text-white transition-colors group/link"
+                    className="flex items-center gap-4 text-sm text-zinc-750 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors group/link"
                   >
-                    <div className="size-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover/link:text-white transition-colors">
+                    <div className="size-9 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-550 dark:text-zinc-400 group-hover/link:text-zinc-950 dark:group-hover/link:text-white transition-colors">
                       <Mail className="size-4" />
                     </div>
                     <div>
@@ -173,9 +173,9 @@ export default function Contact() {
                   {/* Phone */}
                   <a 
                     href="tel:+918240280153"
-                    className="flex items-center gap-4 text-sm text-zinc-300 hover:text-white transition-colors group/link"
+                    className="flex items-center gap-4 text-sm text-zinc-750 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors group/link"
                   >
-                    <div className="size-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover/link:text-white transition-colors">
+                    <div className="size-9 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-550 dark:text-zinc-400 group-hover/link:text-zinc-950 dark:group-hover/link:text-white transition-colors">
                       <Phone className="size-4" />
                     </div>
                     <div>
@@ -185,8 +185,8 @@ export default function Contact() {
                   </a>
 
                   {/* Location */}
-                  <div className="flex items-center gap-4 text-sm text-zinc-300">
-                    <div className="size-9 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400">
+                  <div className="flex items-center gap-4 text-sm text-zinc-750 dark:text-zinc-300">
+                    <div className="size-9 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-550 dark:text-zinc-400">
                       <MapPin className="size-4" />
                     </div>
                     <div>
@@ -197,12 +197,12 @@ export default function Contact() {
                 </div>
 
                 {/* Social links grid */}
-                <div className="flex items-center gap-3 pt-4 border-t border-zinc-900/60">
+                <div className="flex items-center gap-3 pt-4 border-t border-zinc-200 dark:border-zinc-900/60">
                   <a
                     href="https://github.com/Ashishyadav07"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center size-9 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-white transition-all shadow-xs"
+                    className="flex items-center justify-center size-9 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all shadow-xs"
                     aria-label="GitHub profile"
                   >
                     <GithubIcon className="size-4.5" />
@@ -211,7 +211,7 @@ export default function Contact() {
                     href="https://linkedin.com/in/ashish-yadav-08b9bb228"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center size-9 rounded-lg bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-white transition-all shadow-xs"
+                    className="flex items-center justify-center size-9 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all shadow-xs"
                     aria-label="LinkedIn profile"
                   >
                     <LinkedinIcon className="size-4.5" />
@@ -233,7 +233,7 @@ export default function Contact() {
             >
               <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6 h-full flex flex-col justify-between">
                 <div className="space-y-4">
-                  <h4 className="text-lg font-bold text-white border-b border-zinc-900 pb-3">
+                  <h4 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-900 pb-3">
                     Send a Message
                   </h4>
 
@@ -250,7 +250,7 @@ export default function Contact() {
                         value={formState.name}
                         onChange={handleChange}
                         required
-                        className="w-full bg-zinc-950 border border-zinc-900 focus:border-cyan-500/40 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all duration-300 placeholder:text-zinc-700"
+                        className="w-full bg-zinc-100/50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 focus:border-cyan-550/40 focus:bg-white dark:focus:bg-zinc-950 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none transition-all duration-300 placeholder:text-zinc-450 dark:placeholder:text-zinc-700"
                         placeholder="John Doe"
                       />
                     </div>
@@ -266,7 +266,7 @@ export default function Contact() {
                         value={formState.email}
                         onChange={handleChange}
                         required
-                        className="w-full bg-zinc-950 border border-zinc-900 focus:border-cyan-500/40 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all duration-300 placeholder:text-zinc-700"
+                        className="w-full bg-zinc-100/50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 focus:border-cyan-550/40 focus:bg-white dark:focus:bg-zinc-950 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none transition-all duration-300 placeholder:text-zinc-450 dark:placeholder:text-zinc-700"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -283,7 +283,7 @@ export default function Contact() {
                       name="subject"
                       value={formState.subject}
                       onChange={handleChange}
-                      className="w-full bg-zinc-950 border border-zinc-900 focus:border-cyan-500/40 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all duration-300 placeholder:text-zinc-700"
+                      className="w-full bg-zinc-100/50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 focus:border-cyan-550/40 focus:bg-white dark:focus:bg-zinc-950 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none transition-all duration-300 placeholder:text-zinc-450 dark:placeholder:text-zinc-700"
                       placeholder="Collaborative Project Inquiry"
                     />
                   </div>
@@ -300,7 +300,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full bg-zinc-950 border border-zinc-900 focus:border-cyan-500/40 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all duration-300 resize-none placeholder:text-zinc-700"
+                      className="w-full bg-zinc-100/50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-900 focus:border-cyan-550/40 focus:bg-white dark:focus:bg-zinc-950 rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none transition-all duration-300 resize-none placeholder:text-zinc-450 dark:placeholder:text-zinc-700"
                       placeholder="Tell me about your project, timing, and requirements..."
                     />
                   </div>
@@ -311,10 +311,10 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="relative flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl bg-white hover:bg-zinc-200 text-black transition-all duration-300 text-sm font-semibold select-none cursor-pointer disabled:opacity-50 shadow-md hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+                    className="relative flex items-center justify-center gap-2.5 w-full py-3.5 rounded-xl bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200 text-white dark:text-black transition-all duration-300 text-sm font-semibold select-none cursor-pointer disabled:opacity-50 shadow-md hover:shadow-[0_0_15px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]"
                   >
                     {isSubmitting ? (
-                      <div className="size-4.5 rounded-full border-2 border-zinc-900 border-t-transparent animate-spin" />
+                      <div className="size-4.5 rounded-full border-2 border-white dark:border-zinc-900 border-t-transparent animate-spin" />
                     ) : (
                       <>
                         <span>Send Message</span>

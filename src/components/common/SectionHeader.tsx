@@ -133,7 +133,7 @@ export default function SectionHeader({
       {/* Heading */}
       <motion.h2
         variants={headerVariants}
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-zinc-850 dark:from-white to-zinc-650 dark:to-zinc-400 bg-clip-text text-transparent"
       >
         {title}
       </motion.h2>
@@ -142,7 +142,7 @@ export default function SectionHeader({
       {/* Subtitle */}
       <motion.p
         variants={headerVariants}
-        className="mt-6 text-base sm:text-lg text-zinc-400 max-w-2xl font-light leading-relaxed"
+        className="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl font-light leading-relaxed"
       >
         {subtitle}
       </motion.p>

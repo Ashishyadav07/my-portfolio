@@ -20,7 +20,7 @@ interface GlassCardProps extends Omit<HTMLMotionProps<"div">, "children"> {
 export default function GlassCard({
   children,
   glowColor = "rgba(139, 92, 246, 0.12)",
-  borderColorClass = "hover:border-zinc-800/80",
+  borderColorClass = "hover:border-zinc-300 dark:hover:border-zinc-800/80",
   hoverLift = true,
   tilt = true,
   tiltAngle = 6,
@@ -104,7 +104,7 @@ export default function GlassCard({
             }
       }
       className={cn(
-        "relative group bg-zinc-950/45 backdrop-blur-md border border-zinc-900 rounded-2xl transition-colors duration-300 shadow-2xl overflow-hidden flex flex-col h-full",
+        "relative group bg-white/70 dark:bg-zinc-950/45 backdrop-blur-md border border-zinc-200 dark:border-zinc-900 rounded-2xl transition-colors duration-300 shadow-2xl overflow-hidden flex flex-col h-full",
         borderColorClass,
         className
       )}

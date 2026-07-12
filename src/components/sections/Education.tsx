@@ -175,7 +175,7 @@ export default function Education() {
                   >
                     <div className="relative flex h-5 w-5">
                       <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-60 ${item.colorClass}`} />
-                      <div className={`relative inline-flex rounded-full h-5 w-5 border-2 border-black bg-zinc-950 items-center justify-center shadow-lg`}>
+                      <div className={`relative inline-flex rounded-full h-5 w-5 border-2 border-background dark:border-black bg-zinc-100 dark:bg-zinc-950 items-center justify-center shadow-lg`}>
                         <div className={`size-2 rounded-full ${item.colorClass}`} />
                       </div>
                     </div>
@@ -184,36 +184,36 @@ export default function Education() {
                   {/* Glassmorphic timeline card */}
                   <GlassCard
                     glowColor={item.glowColor}
-                    borderColorClass={cn("hover:border-zinc-800", idx === 0 ? "hover:border-violet-500/30" : "hover:border-cyan-500/30")}
+                    borderColorClass={cn("hover:border-zinc-300 dark:hover:border-zinc-800", idx === 0 ? "hover:border-violet-500/30" : "hover:border-cyan-500/30")}
                     variants={cardVariants}
                   >
                     <div className="p-6 md:p-8 flex flex-col gap-6">
                       {/* Top Header Row */}
                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                         <div className="flex gap-4 items-center">
-                          <div className={`p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 group-hover:text-white transition-all duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-900 to-zinc-950`}>
-                            <Icon className="size-6 text-zinc-300" aria-hidden="true" />
+                          <div className={`p-3 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-655 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white transition-all duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950`}>
+                            <Icon className="size-6 text-zinc-600 dark:text-zinc-300" aria-hidden="true" />
                           </div>
                           <div>
-                            <h3 id={cardHeaderId} className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-none">
+                            <h3 id={cardHeaderId} className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight leading-none">
                               {item.degree}
                             </h3>
-                            <p className="text-sm font-semibold text-zinc-400 mt-1.5">{item.institution}</p>
+                            <p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mt-1.5">{item.institution}</p>
                           </div>
                         </div>
 
                         {/* Grade Score Badge */}
                         <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 shrink-0">
-                          <div className="px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-300 flex items-center gap-1.5 shadow-sm">
+                          <div className="px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-mono text-zinc-655 dark:text-zinc-300 flex items-center gap-1.5 shadow-sm">
                             <span className="text-zinc-500">{item.gradeLabel}:</span>
-                            <span className="font-bold text-white">{item.grade}</span>
+                            <span className="font-bold text-zinc-900 dark:text-white">{item.grade}</span>
                           </div>
                           <span className="text-xs font-mono text-zinc-500">{item.duration}</span>
                         </div>
                       </div>
 
                       {/* Highlights Bullet List */}
-                      <ul className="space-y-2.5 text-zinc-400 text-sm font-light leading-relaxed" role="list">
+                      <ul className="space-y-2.5 text-zinc-650 dark:text-zinc-400 text-sm font-light leading-relaxed" role="list">
                         {item.highlights.map((bullet, bIdx) => (
                           <li key={bIdx} className="flex items-start gap-2.5">
                             <span className={`text-sm select-none font-bold bg-gradient-to-br ${idx === 0 ? "from-violet-400 to-fuchsia-400" : "from-cyan-400 to-blue-400"} bg-clip-text text-transparent`} aria-hidden="true">•</span>

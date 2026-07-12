@@ -117,7 +117,7 @@ export default function Footer() {
   return (
     <footer 
       role="contentinfo" 
-      className="relative bg-black text-white border-t border-zinc-900 overflow-hidden"
+      className="relative bg-background text-foreground border-t border-zinc-200 dark:border-zinc-900 overflow-hidden transition-colors duration-300"
     >
       {/* Decorative Top Border Gradient line */}
       <div 
@@ -139,7 +139,7 @@ export default function Footer() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-zinc-900/60"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-zinc-200 dark:border-zinc-900/60"
         >
           {/* Column 1: Brand details */}
           <motion.div variants={columnVariants} className="lg:col-span-5 space-y-6">
@@ -156,12 +156,12 @@ export default function Footer() {
               <div className="relative flex items-center justify-center size-9.5 rounded-xl bg-gradient-to-tr from-primary to-primary/80 text-primary-foreground shadow-md group-hover:scale-105 transition-transform duration-200">
                 <code className="text-sm font-extrabold font-mono">&lt;/&gt;</code>
               </div>
-              <span className="font-heading text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-400">
+              <span className="font-heading text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-zinc-850 dark:from-white to-zinc-500 dark:to-zinc-400">
                 Ashish<span className="text-primary font-mono font-normal">.dev</span>
               </span>
             </Link>
 
-            <p className="text-zinc-400 font-light text-sm leading-relaxed max-w-sm">
+            <p className="text-zinc-650 dark:text-zinc-400 font-light text-sm leading-relaxed max-w-sm">
               An award-winning Frontend Engineer and UI Motion Designer. Crafting premium, accessible, and highly optimized web interfaces using modern technological stacks.
             </p>
 
@@ -172,7 +172,7 @@ export default function Footer() {
                 {technologies.map((tech) => (
                   <span 
                     key={tech}
-                    className="px-2 py-0.5 rounded-md border border-zinc-900 bg-zinc-950/60 text-zinc-500 text-[9px] font-mono select-none"
+                    className="px-2 py-0.5 rounded-md border border-zinc-200 dark:border-zinc-900 bg-zinc-100/60 dark:bg-zinc-950/60 text-zinc-550 dark:text-zinc-500 text-[9px] font-mono select-none"
                   >
                     {tech}
                   </span>
@@ -183,14 +183,14 @@ export default function Footer() {
 
           {/* Column 2: Navigation Links */}
           <motion.div variants={columnVariants} className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold font-mono text-zinc-400 uppercase tracking-wider">Quick Navigation</h4>
+            <h4 className="text-xs font-bold font-mono text-zinc-550 dark:text-zinc-400 uppercase tracking-wider">Quick Navigation</h4>
             <nav aria-label="Footer quick navigation" className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {links.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleScrollToSection(e, link.href)}
-                  className="text-zinc-400 hover:text-white transition-colors text-sm font-light flex items-center gap-1 group/link"
+                  className="text-zinc-650 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors text-sm font-light flex items-center gap-1 group/link"
                 >
                   <span>{link.label}</span>
                   <span className="inline-block opacity-0 group-hover/link:opacity-100 transition-opacity duration-200 text-zinc-500 text-[10px] font-mono">↗</span>
@@ -201,13 +201,13 @@ export default function Footer() {
 
           {/* Column 3: Connect links */}
           <motion.div variants={columnVariants} className="lg:col-span-4 space-y-4">
-            <h4 className="text-xs font-bold font-mono text-zinc-400 uppercase tracking-wider">Connect Details</h4>
+            <h4 className="text-xs font-bold font-mono text-zinc-550 dark:text-zinc-400 uppercase tracking-wider">Connect Details</h4>
             
             <div className="space-y-3.5">
               {/* Email */}
               <a 
                 href="mailto:ashishyadav25800@gmail.com"
-                className="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors text-sm group/contact"
+                className="flex items-center gap-3 text-zinc-650 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors text-sm group/contact"
               >
                 <Mail className="size-4 text-zinc-500 group-hover/contact:text-white transition-colors" />
                 <span className="font-mono">ashishyadav25800@gmail.com</span>
@@ -218,7 +218,7 @@ export default function Footer() {
                 href="https://leetcode.com/ashish-007"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors text-sm group/contact"
+                className="flex items-center gap-3 text-zinc-650 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors text-sm group/contact"
               >
                 <LeetCodeIcon className="size-4 text-zinc-500 group-hover/contact:text-white transition-colors" />
                 <span>LeetCode / ashish-007</span>
@@ -229,9 +229,9 @@ export default function Footer() {
                 href="https://github.com/Ashishyadav07"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors text-sm group/contact"
+                className="flex items-center gap-3 text-zinc-650 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors text-sm group/contact"
               >
-                <GithubIcon className="size-4 text-zinc-500 group-hover/contact:text-white transition-colors" />
+                <GithubIcon className="size-4 text-zinc-500 group-hover/contact:text-zinc-950 dark:group-hover/contact:text-white transition-colors" />
                 <span>GitHub / Ashishyadav07</span>
               </a>
 
@@ -240,9 +240,9 @@ export default function Footer() {
                 href="https://linkedin.com/in/ashish-yadav-08b9bb228"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-zinc-400 hover:text-white transition-colors text-sm group/contact"
+                className="flex items-center gap-3 text-zinc-650 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors text-sm group/contact"
               >
-                <LinkedinIcon className="size-4 text-zinc-500 group-hover/contact:text-white transition-colors" />
+                <LinkedinIcon className="size-4 text-zinc-500 group-hover/contact:text-zinc-950 dark:group-hover/contact:text-white transition-colors" />
                 <span>LinkedIn / ashish-yadav</span>
               </a>
             </div>
@@ -251,11 +251,11 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom Bar: Copyright & credits */}
-        <div className="pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-zinc-500 font-mono">
+        <div className="pt-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-zinc-500 font-mono border-t border-zinc-200 dark:border-zinc-900/60 w-full">
           <div className="flex flex-col md:flex-row items-center gap-1.5 md:gap-4 text-center md:text-left">
             <span>© {currentYear} Ashish Yadav. All rights reserved.</span>
-            <span className="hidden md:inline text-zinc-800">|</span>
-            <span className="text-zinc-400">Designed & Developed by Ashish Yadav</span>
+            <span className="hidden md:inline text-zinc-300 dark:text-zinc-800">|</span>
+            <span className="text-zinc-600 dark:text-zinc-400">Designed & Developed by Ashish Yadav</span>
           </div>
 
           <div className="flex items-center gap-1.5">

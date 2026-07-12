@@ -4,6 +4,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 import {
   Menu,
   Sun,
@@ -88,8 +89,15 @@ const navItems = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Synchronize component mount state to prevent Next.js hydration mismatches
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Handle scroll detection for sticky background changes
   useEffect(() => {
@@ -99,6 +107,10 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  };
 
   // Actively track scrolled section in viewport to highlight correct navbar link
   useEffect(() => {
@@ -268,8 +280,38 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Action Controls (CTA, Mobile Trigger) */}
+        {/* Action Controls (Theme, CTA, Mobile Trigger) */}
         <div className="flex items-center gap-2">
+          
+          {/* Theme Toggle Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="rounded-full relative size-9.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
+          >
+            {mounted ? (
+              <>
+                <motion.div
+                  animate={{ rotate: resolvedTheme === "dark" ? 180 : 0, scale: resolvedTheme === "dark" ? 0 : 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute"
+                >
+                  <Sun className="size-4.5 text-foreground" />
+                </motion.div>
+                <motion.div
+                  animate={{ rotate: resolvedTheme === "dark" ? 0 : -180, scale: resolvedTheme === "dark" ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute"
+                >
+                  <Moon className="size-4.5 text-foreground" />
+                </motion.div>
+              </>
+            ) : (
+              <div className="size-4.5 rounded-full border border-dashed border-muted-foreground/35 animate-pulse" />
+            )}
+          </Button>
 
           {/* Hire Me CTA Button (Desktop only) */}
           <Button

@@ -115,7 +115,7 @@ function ExperienceCard({ item, shouldReduceMotion, direction }: ExperienceCardP
               perspective: 1000,
             }
       }
-      className={`relative group bg-zinc-950/45 backdrop-blur-md border border-zinc-900/80 hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col gap-6 overflow-hidden w-full ${item.borderColor}`}
+      className={`relative group bg-white/70 dark:bg-zinc-950/45 backdrop-blur-md border border-zinc-200 dark:border-zinc-900/80 hover:border-zinc-300 dark:hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col gap-6 overflow-hidden w-full ${item.borderColor}`}
       role="listitem"
       aria-labelledby={headerId}
     >
@@ -138,18 +138,18 @@ function ExperienceCard({ item, shouldReduceMotion, direction }: ExperienceCardP
         {/* Header section */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div className="flex gap-4 items-center">
-            <div className={`p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 group-hover:text-white transition-all duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-900 to-zinc-950 ${item.textColor}`}>
+            <div className={`p-3 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white transition-all duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 ${item.textColor}`}>
               <Icon className="size-6" aria-hidden="true" />
             </div>
             <div>
-              <h3 id={headerId} className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-none">
+              <h3 id={headerId} className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight leading-none">
                 {item.role}
               </h3>
-              <p className="text-sm font-semibold text-zinc-400 mt-1">{item.company}</p>
+              <p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mt-1">{item.company}</p>
             </div>
           </div>
           <div className="flex flex-col sm:items-end gap-1.5 text-zinc-500 text-xs font-mono font-medium sm:text-right mt-1">
-            <div className="flex items-center gap-1.5 text-zinc-400">
+            <div className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
               <Calendar className="size-3.5 text-zinc-500" aria-hidden="true" />
               <span>{item.duration}</span>
             </div>
@@ -158,7 +158,7 @@ function ExperienceCard({ item, shouldReduceMotion, direction }: ExperienceCardP
         </div>
 
         {/* Action descriptions */}
-        <ul className="space-y-3.5 text-zinc-400 text-sm font-light leading-relaxed" role="list">
+        <ul className="space-y-3.5 text-zinc-650 dark:text-zinc-400 text-sm font-light leading-relaxed" role="list">
           {item.description.map((bullet, idx) => (
             <li key={idx} className="flex items-start gap-3">
               <CheckCircle2 className={`size-4.5 mt-0.5 shrink-0 bg-gradient-to-br ${item.color} bg-clip-text text-transparent`} aria-hidden="true" />
@@ -174,7 +174,7 @@ function ExperienceCard({ item, shouldReduceMotion, direction }: ExperienceCardP
             {item.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1.5 rounded-lg border border-zinc-900 bg-zinc-950/60 text-zinc-400 hover:text-white transition-colors duration-200 text-xs font-mono select-none"
+                className="px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-900 bg-zinc-100/60 dark:bg-zinc-950/60 text-zinc-650 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors duration-200 text-xs font-mono select-none"
               >
                 {tech}
               </span>
@@ -300,7 +300,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-24 md:py-32 w-full bg-black text-white overflow-hidden"
+      className="relative py-24 md:py-32 w-full bg-background text-foreground transition-colors duration-300 overflow-hidden"
       aria-label="Work Experience"
     >
       {/* Grid background overlay */}
@@ -359,7 +359,7 @@ export default function Experience() {
           {/* Heading */}
           <motion.h2
             variants={headerVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-zinc-850 dark:from-white to-zinc-650 dark:to-zinc-400 bg-clip-text text-transparent"
           >
             Work Experience
           </motion.h2>
@@ -368,7 +368,7 @@ export default function Experience() {
           {/* Subtitle */}
           <motion.p
             variants={headerVariants}
-            className="mt-6 text-base sm:text-lg text-zinc-400 max-w-2xl font-light leading-relaxed"
+            className="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl font-light leading-relaxed"
           >
             A timeline detailing my professional milestones, core contributions, and technology stack.
           </motion.p>
@@ -378,7 +378,7 @@ export default function Experience() {
         <div className="relative max-w-5xl mx-auto">
           {/* Vertical central timeline line */}
           <div 
-            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-500/80 via-zinc-800 to-transparent -translate-x-1/2 pointer-events-none" 
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-500/80 via-zinc-200 dark:via-zinc-800 to-transparent -translate-x-1/2 pointer-events-none" 
             aria-hidden="true"
           />
 
@@ -404,7 +404,7 @@ export default function Experience() {
                 {/* Center Node (Always visible) */}
                 <div className="col-span-12 md:col-span-2 flex justify-start md:justify-center items-center py-6 md:py-8 z-20 pl-2 sm:pl-3 md:pl-0">
                   <div 
-                    className="absolute left-4 md:left-1/2 -translate-x-1/2 size-5 rounded-full border-3 border-black bg-zinc-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+                    className="absolute left-4 md:left-1/2 -translate-x-1/2 size-5 rounded-full border-3 border-background dark:border-black bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
                     aria-hidden="true"
                   >
                     <div className={`size-3 rounded-full bg-gradient-to-tr ${item.color} shadow-inner`} />

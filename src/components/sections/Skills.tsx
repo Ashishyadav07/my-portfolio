@@ -46,7 +46,7 @@ function SkillsCard({ category, shouldReduceMotion, cardVariants }: SkillsCardPr
       variants={cardVariants}
       whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.01 }}
       transition={{ type: "spring", stiffness: 150, damping: 20 }}
-      className="relative group bg-zinc-950/45 backdrop-blur-md border border-zinc-900/80 hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col h-full overflow-hidden"
+      className="relative group bg-white/70 dark:bg-zinc-950/45 backdrop-blur-md border border-zinc-200 dark:border-zinc-900/80 hover:border-zinc-300 dark:hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col h-full overflow-hidden"
       role="listitem"
       aria-labelledby={headerId}
     >
@@ -66,14 +66,14 @@ function SkillsCard({ category, shouldReduceMotion, cardVariants }: SkillsCardPr
         
         {/* Category Header */}
         <div className="flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 group-hover:text-white group-hover:border-zinc-700 transition-all duration-300 group-hover:scale-105">
+          <div className="p-3 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white group-hover:border-zinc-300 dark:group-hover:border-zinc-700 transition-all duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950">
             <Icon className="size-6 transition-transform duration-500 group-hover:rotate-6" aria-hidden="true" />
           </div>
           <div>
-            <h3 id={headerId} className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight">
+            <h3 id={headerId} className="font-heading text-lg sm:text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
               {category.title}
             </h3>
-            <p className="text-xs text-zinc-500 font-light mt-0.5">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 font-light mt-0.5">
               {category.description}
             </p>
           </div>
@@ -86,7 +86,7 @@ function SkillsCard({ category, shouldReduceMotion, cardVariants }: SkillsCardPr
               key={skill}
               whileHover={shouldReduceMotion ? {} : { scale: 1.05, y: -1 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="px-3 py-1.5 rounded-lg border border-zinc-900 bg-zinc-950/60 text-zinc-400 hover:text-white hover:border-zinc-800 transition-all duration-200 text-xs font-mono font-medium shadow-xs hover:shadow-[0_0_10px_rgba(255,255,255,0.02)] select-none cursor-default"
+              className="px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-900 bg-zinc-100/60 dark:bg-zinc-950/60 text-zinc-650 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-800 transition-all duration-200 text-xs font-mono font-medium shadow-xs hover:shadow-[0_0_10px_rgba(0,0,0,0.02)] dark:hover:shadow-[0_0_10px_rgba(255,255,255,0.02)] select-none cursor-default"
               role="listitem"
             >
               {skill}
@@ -182,7 +182,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative py-24 md:py-32 w-full bg-black text-white overflow-hidden"
+      className="relative py-24 md:py-32 w-full bg-background text-foreground transition-colors duration-300 overflow-hidden"
       aria-label="Skills and Technologies"
     >
       {/* Grid background overlay */}
@@ -241,7 +241,7 @@ export default function Skills() {
           {/* Heading */}
           <motion.h2
             variants={headerVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-zinc-855 dark:from-white to-zinc-650 dark:to-zinc-400 bg-clip-text text-transparent"
           >
             Skills & Technologies
           </motion.h2>
@@ -250,7 +250,7 @@ export default function Skills() {
           {/* Subtitle */}
           <motion.p
             variants={headerVariants}
-            className="mt-6 text-base sm:text-lg text-zinc-400 max-w-2xl font-light leading-relaxed"
+            className="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl font-light leading-relaxed"
           >
             I leverage a modern, robust, and curated stack of technologies to build applications that are performant, visually premium, and highly scalable.
           </motion.p>
