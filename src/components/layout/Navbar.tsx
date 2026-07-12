@@ -284,34 +284,40 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           
           {/* Theme Toggle Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full relative size-9.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
-          >
-            {mounted ? (
-              <>
-                <motion.div
-                  animate={{ rotate: resolvedTheme === "dark" ? 180 : 0, scale: resolvedTheme === "dark" ? 0 : 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute"
-                >
-                  <Sun className="size-4.5 text-foreground" />
-                </motion.div>
-                <motion.div
-                  animate={{ rotate: resolvedTheme === "dark" ? 0 : -180, scale: resolvedTheme === "dark" ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute"
-                >
-                  <Moon className="size-4.5 text-foreground" />
-                </motion.div>
-              </>
-            ) : (
+          {mounted ? (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full relative size-9.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
+            >
+              <motion.div
+                animate={{ rotate: resolvedTheme === "dark" ? 180 : 0, scale: resolvedTheme === "dark" ? 0 : 1 }}
+                transition={{ duration: 0.3 }}
+                className="absolute"
+              >
+                <Sun className="size-4.5 text-foreground" />
+              </motion.div>
+              <motion.div
+                animate={{ rotate: resolvedTheme === "dark" ? 0 : -180, scale: resolvedTheme === "dark" ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute"
+              >
+                <Moon className="size-4.5 text-foreground" />
+              </motion.div>
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full relative size-9.5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              aria-label="Switch theme"
+              disabled
+            >
               <div className="size-4.5 rounded-full border border-dashed border-muted-foreground/35 animate-pulse" />
-            )}
-          </Button>
+            </Button>
+          )}
 
           {/* Hire Me CTA Button (Desktop only) */}
           <Button

@@ -32,6 +32,11 @@ function PremiumCard({
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion) return;
@@ -68,7 +73,7 @@ function PremiumCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={
-        shouldReduceMotion
+        shouldReduceMotion || !mounted
           ? {}
           : {
               rotateX: rotateXSpring,
@@ -359,54 +364,61 @@ export default function About() {
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">1</span>
                     <span>
-                      <span className="text-purple-400">const</span> <span className="text-blue-400">developer</span> = &#123;
+                      <span className="text-purple-400">const</span>{" "}
+                      <span className="text-blue-400">developer</span>{" "}
+                      = {"{"}
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">2</span>
                     <span className="pl-4">
-                      <span className="text-zinc-400">name:</span> <span className="text-amber-300">"{personal.name}"</span>,
+                      <span className="text-zinc-400">name:</span>{" "}
+                      <span className="text-amber-300">"{personal.name}"</span>,
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">3</span>
                     <span className="pl-4">
-                      <span className="text-zinc-400">role:</span> <span className="text-amber-300">"{personal.title}"</span>,
+                      <span className="text-zinc-400">role:</span>{" "}
+                      <span className="text-amber-300">"{personal.title}"</span>,
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">4</span>
                     <span className="pl-4">
-                      <span className="text-zinc-400">focus:</span> <span className="text-cyan-400">&#91;</span>
+                      <span className="text-zinc-400">focus:</span>{" "}
+                      <span className="text-cyan-400">{"["}</span>
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">5</span>
-                    <span className="pl-8 text-amber-300">
-                      "Next.js", "TypeScript", "Tailwind"
+                    <span className="pl-8">
+                      <span className="text-amber-300">"Next.js", "TypeScript", "Tailwind"</span>
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">6</span>
                     <span className="pl-4">
-                      <span className="text-cyan-400">&#93;</span>,
+                      <span className="text-cyan-400">{"]"}</span>,
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">7</span>
                     <span className="pl-4">
-                      <span className="text-zinc-400">location:</span> <span className="text-amber-300">"{personal.location}"</span>,
+                      <span className="text-zinc-400">location:</span>{" "}
+                      <span className="text-amber-300">"{personal.location}"</span>,
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">8</span>
                     <span className="pl-4">
-                      <span className="text-zinc-400">availableForHire:</span> <span className="text-emerald-400">{personal.availableForFreelance ? "true" : "false"}</span>
+                      <span className="text-zinc-400">availableForHire:</span>{" "}
+                      <span className="text-emerald-400">{personal.availableForFreelance ? "true" : "false"}</span>
                     </span>
                   </div>
                   <div className="flex">
                     <span className="text-zinc-600 select-none pr-4 text-right w-8">9</span>
-                    <span>&#125;;</span>
+                    <span>{"};"}</span>
                   </div>
                 </div>
               </PremiumCard>

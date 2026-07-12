@@ -32,8 +32,10 @@ export default function GlassCard({
 }: GlassCardProps) {
   const [shouldReduceMotion, setShouldReduceMotion] = useState(false);
   const [hovering, setHovering] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setShouldReduceMotion(mediaQuery.matches);
     
@@ -94,7 +96,7 @@ export default function GlassCard({
       whileHover={shouldReduceMotion || !hoverLift ? {} : { y: -6, scale: 1.01 }}
       transition={{ type: "spring", stiffness: 150, damping: 20 }}
       style={
-        shouldReduceMotion || !tilt
+        shouldReduceMotion || !tilt || !mounted
           ? {}
           : {
               rotateX: rotateXSpring,
