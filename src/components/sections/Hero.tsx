@@ -79,7 +79,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full bg-background text-foreground flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-28 md:pt-32 transition-colors duration-300"
+      className="relative min-h-screen w-full bg-background text-foreground flex items-center justify-center overflow-hidden pt-24 pb-32 md:pb-16 sm:pt-28 md:pt-32 transition-colors duration-300"
     >
       {/* Grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_60%,transparent_100%)] pointer-events-none" />
@@ -257,7 +257,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.6, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer group z-10"
+        className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer group z-10"
         onClick={(e) => handleScrollToSection(e, "#about")}
       >
         <span className="text-[10px] tracking-widest text-zinc-500 group-hover:text-zinc-300 transition-colors uppercase font-medium">

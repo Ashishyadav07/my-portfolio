@@ -3,12 +3,14 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
-import { Calendar, CheckCircle2, Cpu, Compass, Layers, Briefcase } from "lucide-react";
+import { Calendar, CheckCircle2, Cpu, Compass, Layers, Briefcase, Code2 } from "lucide-react";
 
-// Vercel Custom Minimal SVG Logo
-const VercelIcon = (props: React.ComponentProps<"svg">) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M24 22.525H0L12 1.475L24 22.525Z" />
+// Crafted Campus Custom Tech SVG Logo
+const CraftedCampusIcon = (props: React.ComponentProps<"svg">) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M10 17l-5-5 5-5" />
+    <path d="M14 7l5 5-5 5" />
+    <circle cx="12" cy="12" r="3" />
   </svg>
 );
 
@@ -25,6 +27,9 @@ interface ExperienceItem {
   glowColor: string;
   borderColor: string;
   textColor: string;
+  summary?: string;
+  employmentType?: string;
+  current?: boolean;
 }
 
 interface ExperienceCardProps {
@@ -115,7 +120,7 @@ function ExperienceCard({ item, shouldReduceMotion, direction }: ExperienceCardP
               perspective: 1000,
             }
       }
-      className={`relative group bg-white/70 dark:bg-zinc-950/45 backdrop-blur-md border border-zinc-200 dark:border-zinc-900/80 hover:border-zinc-300 dark:hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col gap-6 overflow-hidden w-full ${item.borderColor}`}
+      className={`relative group bg-white/70 dark:bg-zinc-950/45 backdrop-blur-md border border-zinc-200 dark:border-zinc-900/80 hover:border-zinc-300 dark:hover:border-zinc-800 rounded-2xl p-6 md:p-8 transition-colors duration-300 shadow-2xl flex flex-col justify-between gap-6 overflow-hidden w-full min-h-[450px] md:min-h-[400px] ${item.borderColor}`}
       role="listitem"
       aria-labelledby={headerId}
     >
@@ -136,36 +141,69 @@ function ExperienceCard({ item, shouldReduceMotion, direction }: ExperienceCardP
         className="space-y-5"
       >
         {/* Header section */}
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-          <div className="flex gap-4 items-center">
-            <div className={`p-3 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white transition-all duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 ${item.textColor}`}>
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-4 items-start">
+            <div className={`p-3 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-300 group-hover:text-zinc-950 dark:group-hover:text-white transition-all duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 mt-1 shrink-0 ${item.textColor}`}>
               <Icon className="size-6" aria-hidden="true" />
             </div>
-            <div>
-              <h3 id={headerId} className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight leading-none">
-                {item.role}
-              </h3>
-              <p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mt-1">{item.company}</p>
+            <div className="space-y-2 flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 id={headerId} className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight leading-tight">
+                  {item.role}
+                </h3>
+                <div className="flex flex-wrap gap-1.5 items-center">
+                  {item.current && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 animate-pulse shrink-0">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                      </span>
+                      Present
+                    </span>
+                  )}
+                  {item.employmentType && (
+                    <span className="inline-flex items-center rounded-full bg-zinc-200/50 dark:bg-zinc-900 border border-zinc-300/40 dark:border-zinc-850 px-2.5 py-0.5 text-[10px] font-medium text-zinc-650 dark:text-zinc-400 uppercase tracking-wider shrink-0">
+                      {item.employmentType}
+                    </span>
+                  )}
+                </div>
+              </div>
+              
+              <div className="flex flex-col gap-2 text-sm">
+                <p className="font-semibold text-zinc-700 dark:text-zinc-300">{item.company}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="flex items-start gap-1.5 rounded-md bg-zinc-100/80 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/80 px-2 py-1 text-zinc-650 dark:text-zinc-400 font-mono text-xs w-fit max-w-full">
+                    <Calendar className="size-3.5 text-zinc-500 mt-0.5 shrink-0" aria-hidden="true" />
+                    <span className="whitespace-normal break-words">{item.duration}</span>
+                  </div>
+                  <span className="inline-flex items-center rounded-md bg-zinc-100/85 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800/80 px-2 py-1 text-zinc-550 dark:text-zinc-400 text-xs font-medium shrink-0">
+                    {item.location}
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col sm:items-end gap-1.5 text-zinc-500 text-xs font-mono font-medium sm:text-right mt-1">
-            <div className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
-              <Calendar className="size-3.5 text-zinc-500" aria-hidden="true" />
-              <span>{item.duration}</span>
-            </div>
-            <span>{item.location}</span>
           </div>
         </div>
 
+        {/* Company Description Summary */}
+        {item.summary && (
+          <p className="text-sm text-zinc-650 dark:text-zinc-400 font-normal leading-relaxed italic border-l-2 border-zinc-200 dark:border-zinc-800 pl-4 py-0.5">
+            {item.summary}
+          </p>
+        )}
+
         {/* Action descriptions */}
-        <ul className="space-y-3.5 text-zinc-650 dark:text-zinc-400 text-sm font-light leading-relaxed" role="list">
-          {item.description.map((bullet, idx) => (
-            <li key={idx} className="flex items-start gap-3">
-              <CheckCircle2 className={`size-4.5 mt-0.5 shrink-0 bg-gradient-to-br ${item.color} bg-clip-text text-transparent`} aria-hidden="true" />
-              <span>{bullet}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-3 flex-1">
+          <h4 className="text-xs font-semibold text-zinc-450 dark:text-zinc-500 tracking-wider uppercase">Key Achievements</h4>
+          <ul className="space-y-3.5 text-zinc-650 dark:text-zinc-400 text-sm font-light leading-relaxed" role="list">
+            {item.description.map((bullet, idx) => (
+              <li key={idx} className="flex items-start gap-3">
+                <CheckCircle2 className={`size-4.5 mt-0.5 shrink-0 bg-gradient-to-br ${item.color} bg-clip-text text-transparent`} aria-hidden="true" />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Technologies badges */}
         <div className="space-y-3 pt-2">
@@ -225,71 +263,77 @@ export default function Experience() {
     },
   };
 
-  // Curated, premium design-phase placeholders to show an Awwwards-grade timeline flow
+  // Real work experience items for the developer portfolio
   const experiences: ExperienceItem[] = [
     {
-      company: "Vercel",
-      role: "Lead Frontend Engineer",
-      duration: "2024 - Present",
-      location: "San Francisco, CA (Remote)",
+      company: "Crafted Campus",
+      role: "Full Stack Developer",
+      duration: "March 2026 – Present",
+      location: "India",
+      employmentType: "Full-time",
+      current: true,
+      summary: "Working as a Full Stack Developer, building scalable web applications and maintaining production websites. Responsible for developing modern frontend interfaces, backend APIs, WordPress solutions, and collaborating with the team to deliver high-quality projects.",
       description: [
-        "Pioneered Next.js compiler optimizations, improving page loading performance by 35% across global edge networks.",
-        "Spearheaded core component library architectures, shipping accessible, responsive design systems used by millions.",
-        "Collaborated closely with product engineering teams to design and implement next-generation page rendering mechanisms."
+        "Developed and maintained multiple production-ready websites.",
+        "Built full-stack web applications using the MERN stack.",
+        "Created responsive and SEO-friendly user interfaces.",
+        "Integrated backend APIs and databases.",
+        "Customized WordPress websites for clients.",
+        "Improved website performance and user experience."
       ],
-      technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Rust"],
-      icon: VercelIcon,
-      color: "from-zinc-200 to-zinc-400",
-      glowColor: "rgba(255, 255, 255, 0.08)",
-      borderColor: "group-hover:border-white/20",
-      textColor: "text-zinc-200",
-    },
-    {
-      company: "Stripe",
-      role: "Senior Full Stack Developer",
-      duration: "2022 - 2024",
-      location: "Dublin, Ireland (Hybrid)",
-      description: [
-        "Engineered modular integration APIs for payment validation, reducing transaction latency by 120ms globally.",
-        "Designed and maintained dashboard analytical charts tracking real-time client transaction metrics.",
-        "Introduced reactive WebSocket subscriptions, ensuring zero-latency merchant payout notifications."
+      technologies: [
+        "React",
+        "Next.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "WordPress",
+        "PHP",
+        "Laravel (Basic)",
+        "JavaScript",
+        "TypeScript",
+        "Tailwind CSS",
+        "Git",
+        "REST APIs"
       ],
-      technologies: ["Node.js", "Express", "TypeScript", "PostgreSQL", "React"],
-      icon: Layers,
-      color: "from-indigo-500 to-purple-500",
-      glowColor: "rgba(99, 102, 241, 0.15)",
-      borderColor: "group-hover:border-indigo-500/30",
-      textColor: "text-indigo-400",
-    },
-    {
-      company: "Linear",
-      role: "Frontend Developer",
-      duration: "2021 - 2022",
-      location: "Berlin, Germany (Remote)",
-      description: [
-        "Constructed fluid, keyboard-driven UI shortcuts that optimized operational work tracking by 40%.",
-        "Created physics-based drag-and-drop workflow task grids with smooth Framer Motion transitions.",
-        "Integrated client-side database synchronization using IndexedDB for zero-lag offline navigation."
-      ],
-      technologies: ["React", "TypeScript", "Framer Motion", "GraphQL", "IndexedDB"],
-      icon: Compass,
+      icon: CraftedCampusIcon,
       color: "from-violet-500 to-fuchsia-500",
       glowColor: "rgba(139, 92, 246, 0.15)",
       borderColor: "group-hover:border-violet-500/30",
       textColor: "text-violet-400",
     },
     {
-      company: "Apple",
-      role: "Software Engineering Intern",
-      duration: "2020 - 2021",
-      location: "Cupertino, CA",
+      company: "Crafted Campus",
+      role: "Web Development Intern",
+      duration: "September 2025 – March 2026 (6 Months)",
+      location: "India",
+      employmentType: "Internship",
+      current: false,
+      summary: "Worked as a Web Development Intern where I contributed to the development and maintenance of client websites and web applications. Built responsive user interfaces, customized WordPress websites, collaborated with senior developers, and gained hands-on experience with full-stack web development.",
       description: [
-        "Contributed to retail support portals, reducing application memory leaks and enhancing caching modules.",
-        "Implemented high-coverage unit testing suites to guarantee stability across retail localizations.",
-        "Collaborated with human interface designers to code responsive web interfaces conforming to HIG guidelines."
+        "Developed responsive client websites.",
+        "Customized WordPress themes and plugins.",
+        "Assisted in MERN stack application development.",
+        "Worked with REST APIs.",
+        "Collaborated using Git and GitHub."
       ],
-      technologies: ["JavaScript", "HTML5", "Sass", "Web APIs", "Jest"],
-      icon: Cpu,
+      technologies: [
+        "WordPress",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PHP",
+        "Laravel (Basic)",
+        "JavaScript",
+        "TypeScript",
+        "HTML",
+        "CSS",
+        "Tailwind CSS",
+        "Git"
+      ],
+      icon: CraftedCampusIcon,
       color: "from-cyan-500 to-blue-500",
       glowColor: "rgba(6, 182, 212, 0.15)",
       borderColor: "group-hover:border-cyan-500/30",
@@ -391,40 +435,40 @@ export default function Experience() {
             role="list"
             aria-label="Professional timeline events"
           >
-            {experiences.map((item, idx) => (
-              <div key={item.company} className="relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start w-full">
-                
-                {/* Left Column (Desktop Only for Even Index) */}
-                <div className="hidden md:flex md:col-span-5 justify-end">
-                  {idx % 2 === 0 && (
-                    <ExperienceCard item={item} shouldReduceMotion={shouldReduceMotion} direction="left" />
-                  )}
-                </div>
+            {experiences.map((item, idx) => {
+              const isEven = idx % 2 === 0;
+              return (
+                <div key={`${item.company}-${item.role}-${idx}`} className="relative grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch w-full">
+                  
+                  {/* Left Column (Desktop: Even card, Mobile: Hidden) */}
+                  <div className="hidden md:flex md:col-span-5 justify-end items-center">
+                    {isEven && (
+                      <ExperienceCard item={item} shouldReduceMotion={shouldReduceMotion} direction="left" />
+                    )}
+                  </div>
 
-                {/* Center Node (Always visible) */}
-                <div className="col-span-12 md:col-span-2 flex justify-start md:justify-center items-center py-6 md:py-8 z-20 pl-2 sm:pl-3 md:pl-0">
+                  {/* Spacer Column for Center on Desktop (Hidden on Mobile) */}
+                  <div className="hidden md:block md:col-span-2" aria-hidden="true" />
+
+                  {/* Right Column (Desktop: Odd card, Mobile: All cards) */}
+                  <div className="col-span-12 md:col-span-5 pl-10 md:pl-0 flex items-center">
+                    <div className={`w-full ${isEven ? "md:hidden" : ""}`}>
+                      <ExperienceCard item={item} shouldReduceMotion={shouldReduceMotion} direction="right" />
+                    </div>
+                  </div>
+
+                  {/* Center Node (Always visible and centered vertically relative to row) */}
                   <div 
-                    className="absolute left-4 md:left-1/2 -translate-x-1/2 size-5 rounded-full border-3 border-background dark:border-black bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+                    className="absolute left-4 md:left-1/2 top-1/2 size-5 rounded-full border-3 border-background dark:border-black bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 z-20"
+                    style={{ transform: "translate(-50%, -50%)" }}
                     aria-hidden="true"
                   >
                     <div className={`size-3 rounded-full bg-gradient-to-tr ${item.color} shadow-inner`} />
                   </div>
-                </div>
 
-                {/* Right Column (Desktop for Odd Index, Mobile for All) */}
-                <div className={`col-span-12 md:col-span-5 pl-10 md:pl-0 ${idx % 2 !== 0 ? "" : "md:hidden"}`}>
-                  <ExperienceCard item={item} shouldReduceMotion={shouldReduceMotion} direction="right" />
                 </div>
-                
-                {/* Mobile Fallback: If it is an Even index, on mobile render card on the right */}
-                {idx % 2 === 0 && (
-                  <div className="col-span-12 pl-10 md:hidden">
-                    <ExperienceCard item={item} shouldReduceMotion={shouldReduceMotion} direction="right" />
-                  </div>
-                )}
-
-              </div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
 
