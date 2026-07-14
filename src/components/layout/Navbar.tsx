@@ -112,40 +112,49 @@ export default function Navbar() {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
+  // Reference to track manual scrolling vs auto-scrolling on click to prevent active link flickering
+  const isScrollingRef = React.useRef(false);
+
   // Actively track scrolled section in viewport to highlight correct navbar link
   useEffect(() => {
-    const sections = navItems.map((item) => item.href.slice(1));
-    const visibilityRatios: Record<string, number> = {};
+    const sections = ["hero", ...navItems.map((item) => item.href.slice(1))];
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        visibilityRatios[entry.target.id] = entry.intersectionRatio;
-      });
+    const observerCallback = () => {
+      // If we are currently programmatically scrolling, ignore observer updates
+      if (isScrollingRef.current) return;
+
+      const headerHeight = 72;
+      const activeLine = headerHeight + 60; // 132px line threshold below the sticky navbar
 
       let currentActive = "";
-      let maxRatio = 0.15; // Visibility threshold
 
-      for (const [id, ratio] of Object.entries(visibilityRatios)) {
-        if (ratio > maxRatio) {
-          maxRatio = ratio;
-          currentActive = id;
+      // Prioritize top boundary check for contiguous sections
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= activeLine && rect.bottom > activeLine) {
+            currentActive = id;
+            break;
+          }
         }
       }
 
-      if (currentActive) {
+      if (currentActive === "hero" || window.scrollY < 80) {
+        setActiveIndex(null);
+      } else if (currentActive) {
         const index = navItems.findIndex((item) => item.href === `#${currentActive}`);
         if (index !== -1) {
           setActiveIndex(index);
         }
-      } else if (window.scrollY < 100) {
-        setActiveIndex(null);
       }
     };
 
+    // Trigger on intersection crossings, accounting for the sticky navbar height
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px", // Trigger when section occupies the upper-middle region
-      threshold: [0, 0.1, 0.2, 0.3, 0.5, 0.8, 1.0],
+      rootMargin: "-72px 0px -60% 0px",
+      threshold: [0, 0.1, 0.2, 0.5, 0.8, 1.0],
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -155,20 +164,64 @@ export default function Navbar() {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    // Sync on scroll end to prevent any observer latency issues
+    const handleManualScroll = () => {
+      if (!isScrollingRef.current) {
+        observerCallback();
+      }
+    };
+    window.addEventListener("scroll", handleManualScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleManualScroll);
+    };
   }, []);
 
   // Custom smooth scroll navigation handler with offset to account for sticky header
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleScrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLDivElement>,
+    href: string
+  ) => {
     e.preventDefault();
-    const id = href.slice(1);
-    const element = document.getElementById(id);
-    if (element) {
-      const headerHeight = 72; // height of the scrolled sticky navbar
-      const y = element.getBoundingClientRect().top + window.scrollY - headerHeight;
-      window.scrollTo({ top: y, behavior: "smooth" });
-      window.history.pushState(null, "", href);
+    isScrollingRef.current = true;
+
+    if (href === "#hero" || href === "#" || href === "") {
+      setActiveIndex(null);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.pushState(null, "", "/");
+    } else {
+      const id = href.slice(1);
+      const element = document.getElementById(id);
+      if (element) {
+        const headerHeight = 72; // height of the scrolled sticky navbar
+        const y = element.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        window.history.pushState(null, "", href);
+
+        const index = navItems.findIndex((item) => item.href === href);
+        if (index !== -1) {
+          setActiveIndex(index);
+        }
+      }
     }
+
+    // Set up scroll end listener to re-enable observer after smooth scroll completes
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScrollEnd = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrollingRef.current = false;
+        window.removeEventListener("scroll", handleScrollEnd);
+      }, 100);
+    };
+    window.addEventListener("scroll", handleScrollEnd);
+
+    // Fallback safety timeout in case page cannot scroll further
+    setTimeout(() => {
+      isScrollingRef.current = false;
+      window.removeEventListener("scroll", handleScrollEnd);
+    }, 1200);
   };
 
   // Animation variants for staggered mobile drawer navigation links
@@ -209,12 +262,7 @@ export default function Navbar() {
         {/* Brand Logo */}
         <Link
           href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            window.history.pushState(null, "", "/");
-            setActiveIndex(null);
-          }}
+          onClick={(e) => handleScrollToSection(e, "#hero")}
           className="flex items-center gap-2.5 group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary rounded-md p-1"
           aria-label="Ashish Yadav Portfolio Home"
         >
