@@ -147,7 +147,7 @@ export const portfolioData: PortfolioData = {
     github: "https://github.com/Ashishyadav07",
     linkedin: "https://linkedin.com/in/ashish-yadav",
     availableForFreelance: true,
-    avatarUrl: "/profile.jpg",
+    avatarUrl: "/images/profile/ashish.webp",
     resumeUrl: "/Resume.pdf",
     about: {
       intro: "I am a passionate Full Stack Web Developer dedicated to crafting high-performance, responsive, and scalable web experiences.",

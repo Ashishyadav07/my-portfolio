@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Hero() {
@@ -20,6 +21,42 @@ export default function Hero() {
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
+
+  // Mouse coordinates motion values for parallax/spotlight glows
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // 3D Tilt Spring configuration
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const rotateXSpring = useSpring(rotateX, { damping: 25, stiffness: 180 });
+  const rotateYSpring = useSpring(rotateY, { damping: 25, stiffness: 180 });
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const relativeX = event.clientX - rect.left;
+    const relativeY = event.clientY - rect.top;
+    
+    mouseX.set(relativeX);
+    mouseY.set(relativeY);
+
+    // Subtle 3D tilt (up to 3 degrees)
+    const rotX = -((relativeY - height / 2) / (height / 2)) * 3;
+    const rotY = ((relativeX - width / 2) / (width / 2)) * 3;
+
+    rotateX.set(rotX);
+    rotateY.set(rotY);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  const spotlightGradient = useMotionTemplate`radial-gradient(250px circle at ${mouseX}px ${mouseY}px, rgba(139, 92, 246, 0.15), transparent 80%)`;
 
   const handleScrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLDivElement>,
@@ -211,14 +248,16 @@ export default function Hero() {
               variants={imageVariants}
               initial="hidden"
               animate="visible"
-              className="relative flex justify-center items-center"
+              className="relative flex justify-center items-center w-full"
             >
-              {/* Circular ambient glow background */}
-              <div className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full bg-gradient-to-tr from-violet-600 via-indigo-500 to-cyan-400 opacity-20 blur-3xl" />
+              {/* Soft blurred background glow that adapts to theme for portrait layout */}
+              <div className="absolute w-[300px] h-[375px] sm:w-[380px] sm:h-[475px] lg:w-[460px] lg:h-[575px] rounded-[3rem] bg-gradient-to-tr from-violet-500/10 via-indigo-500/10 to-cyan-500/10 dark:from-violet-500/15 dark:via-indigo-500/15 dark:to-cyan-500/15 opacity-80 blur-3xl pointer-events-none" />
 
-              {/* Floating Container */}
+              {/* Floating & Parallax Container */}
               <motion.div
-                animate={shouldReduceMotion ? undefined : { y: [0, -12, 0] }}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                animate={shouldReduceMotion ? undefined : { y: [0, -10, 0] }}
                 transition={
                   shouldReduceMotion
                     ? undefined
@@ -229,19 +268,43 @@ export default function Hero() {
                         ease: "easeInOut",
                       }
                 }
-                className="relative flex justify-center items-center"
+                style={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        rotateX: rotateXSpring,
+                        rotateY: rotateYSpring,
+                        transformStyle: "preserve-3d",
+                        perspective: 1000,
+                      }
+                }
+                className="relative flex justify-center items-center cursor-pointer group"
               >
-                {/* Outer decorative ring */}
-                <div className="absolute w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] rounded-full border border-zinc-200 dark:border-zinc-800/60 bg-zinc-100/20 dark:bg-zinc-950/20 backdrop-blur-xs pointer-events-none" />
+                {/* Modern Glassmorphism Portrait Container Card */}
+                <div 
+                  style={{ transform: shouldReduceMotion ? "none" : "translateZ(10px)", transformStyle: "preserve-3d" }}
+                  className="relative p-3 md:p-4 rounded-[2rem] bg-white/20 dark:bg-zinc-950/20 border border-zinc-200/40 dark:border-zinc-800/30 backdrop-blur-md shadow-2xl dark:shadow-zinc-950/50 w-[260px] h-[325px] sm:w-[340px] sm:h-[425px] md:w-[380px] md:h-[475px] lg:w-[440px] lg:h-[550px] overflow-hidden"
+                >
+                  {/* Spotlight Hover Proximity Glow inside the glass frame */}
+                  {!shouldReduceMotion && (
+                    <motion.div
+                      className="absolute -inset-px pointer-events-none z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[2rem]"
+                      style={{ background: spotlightGradient }}
+                    />
+                  )}
 
-                {/* Main Profile Image Ring Wrapper */}
-                <div className="relative p-1.5 rounded-full bg-gradient-to-tr from-violet-500/25 via-indigo-500/15 to-cyan-500/25 border border-white/10 shadow-[0_0_50px_rgba(139,92,246,0.1)]">
-                  <div className="relative rounded-full overflow-hidden w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 bg-zinc-900">
-                    <img
+                  {/* Main Portrait Mask Container */}
+                  <div 
+                    style={{ transform: shouldReduceMotion ? "none" : "translateZ(20px)" }}
+                    className="relative w-full h-full rounded-[1.25rem] overflow-hidden bg-zinc-150 dark:bg-zinc-900 shadow-md"
+                  >
+                    <Image
                       src={personal.avatarUrl}
                       alt={`${personal.name} - ${personal.title} Portrait`}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      loading="eager"
+                      fill
+                      sizes="(max-width: 640px) 260px, (max-width: 768px) 340px, (max-width: 1024px) 380px, 440px"
+                      priority
+                      className="object-cover transition-transform duration-500 hover:scale-103 select-none"
                     />
                   </div>
                 </div>
